@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Age Verification</title>
+  <style>
+    #Mytext {
+      padding: 7px 20px;
+      border-radius: 3px;
+    }
+
+    #Mysubmit {
+      padding: 9px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      background-color: forestgreen;
+      border: none;
+    }
+
+    .btn-1 {
+      background-color: red;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <label>Enter Your Age:</label><br><br>
+  <input type="number" id="Mytext" placeholder="Enter age">
+  <button type="submit" id="Mysubmit">Submit</button>
+  <p id="result">:</p>
+
+  <script>
+    const number = document.getElementById("Mytext");
+    const button = document.getElementById("Mysubmit");
+    const result = document.getElementById("result");
+
+    button.onclick = function() {
+      const age = parseInt(number.value); // Use parseInt for better error handling
+
+      if (isNaN(age)) {
+        result.textContent = "Please enter a valid age.";
+      } else if (age === 0) {
+        result.textContent = "You are just born.";
+      } else if (age >= 18) {
+        // If age is 18 or older, create a new window and load the content
+        const newWindow = window.open("", "_blank");
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>New Page</title>
+            <style>
+              .btn-1 {
+                background-color: red;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                margin-right: 5px;
+              }
+            </style>
+          </head>
+          <body>
+            <button class="btn-1">SUBSCRIBE</button>
+            <a href="https://youtube.com/@rxmha-y?si=qQEUdRH6cdbSHdaD">My YouTube Channel</a>
+          </body>
+          </html>
+        `);
+      } else if (age >= 100) {
+        result.textContent = "You are too old.";
+      } else {
+        result.textContent = "You must be 18+ to enter this site.";
+      }
+    };
+  </script>
+</body>
+
+</html>
